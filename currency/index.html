@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <title>Currency Converter</title>
+  </head>
+  <body>
+    <nav class="navbar navbar-dark bg-primary">  
+      <div class="container">
+        <a class="navbar-brand" href="#">Currency Converter</a>
+      </div>
+    </nav>
+
+    <div class="container" id="appContainer">
+      <div class="row">
+        <div class="col-6 col-md-3">
+          <h3>Convert From</h3>
+          <currency-input
+            :currencies="currencies"
+            :disabled-value="currencyTo"
+            v-model="currencyFrom"
+            suffix="From"
+          />
+          
+        </div>
+        <div class="col-12 col-md-6 order-3 order-md-1">
+          <div class="row mt-5">
+            <div class="col-5">
+              <label for="amountFrom">Amount in {{currencyFrom}}</label>
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">{{getCurrencySymbol(currencyFrom)}}</span>
+                </div>
+                <input 
+                  type="number" 
+                  class="form-control" 
+                  placeholder="Amount" 
+                  aria-label="Amount"
+                  id="amountFrom"
+                  v-model="amountFrom">
+              </div>
+            </div>
+            <div class="col-2 text-center mt-3">
+              <p>
+                <button 
+                    class="btn btn-primary"
+                    @click="swapCurrency()">
+                  &hArr;
+                </button>
+              </p>
+
+            </div>
+            <div class="col-5">
+              <label for="amountTo">Amount in {{currencyTo}}</label>
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">{{getCurrencySymbol(currencyTo)}}</span>
+                </div>
+                <input 
+                  type="text" 
+                  readonly="readonly"
+                  class="form-control" 
+                  placeholder="Amount" 
+                  aria-label="Amount"
+                  id="amountTo"
+                  :value="amountTo">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-6 col-md-3 order-2">
+          <h3>Convert To</h3>
+          <currency-input
+            :currencies="currencies"
+            :disabled-value="currencyFrom"
+            v-model="currencyTo"
+            suffix="To"
+          />
+        </div>
+      </div>
+    </div>
+
+    <div class="container mt-5">
+      <details class="mt-5">
+        <summary>Task explanation</summary>
+        <ul>
+          <li>webpack</li>
+          <li>component files</li>
+          <li>why aiohttp</li>
+        </ul>
+      </details>
+    </div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <!--
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    -->
+
+    <!-- development version, includes helpful console warnings -->
+    <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.15/lodash.min.js" integrity="sha256-VeNaFBVDhoX3H+gJ37DpT/nTuZTdjYro9yBruHjVmoQ=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="static/app.js"></script>
+  </body>
+</html>
