@@ -116,7 +116,7 @@ The server is built with `aiohttp`.
 
 You need to install dependencies with `pipenv sync`. Or you can use `pip install -r requirements.txt`. Be sure to use `venv` if you are not using `pipenv`.
 
-To run the server us
+To run the server use
 
 ```
 pipenv run currency
@@ -128,7 +128,7 @@ or
 python currency.py
 ```
 
-By default it runs the server on `8080`. You can customize it via `PORT` environment variable.
+By default it runs the server on port `8080`. You can customize it via `PORT` environment variable.
 
 Now you can open http://localhost:8080/ in browser and check the currency converter.
 
