@@ -137,3 +137,9 @@ Also you can check the list of API endpoints (only one for now) [via swagger](ht
 The frontend is done with `vue.js`. There are some notes what I would like to implement in future if this would be a longer challenge or real project.
 
 For API to get rates I use [exchangeratesapi.io](https://exchangeratesapi.io/)
+
+Note:
+
+> I don't use things like `typescript` or `babel`. So browsers like IE will not work as it lacks support of destructive assignment or arrow functions.
+
+> I'm aware of this and for production code will use tools like `babel` to support older JS specs.
