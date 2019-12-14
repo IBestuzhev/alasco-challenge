@@ -19,23 +19,38 @@ class Rectangle:
     bottom_right: Point
 
     def __post_init__(self):
-        err_msg = 'You should provide 2 points - top-left and bottom-right'
+        """
+        Validate that 2 points are placed correctly.
+
+        Rectangle is described by top-left and bottom-right points
+        """
+        err_msg = (f'Wrong rectange {self.top_left} x {self.bottom_right}'
+                   f'You should provide 2 points - top-left and bottom-right')
         if self.top_left.x >= self.bottom_right.x:
             raise ValueError(err_msg)
         if self.top_left.y <= self.bottom_right.y:
             raise ValueError(err_msg)
 
 
-def _split_2(l: typing.List[int]) -> PairGen:
-    # TODO: Add docstring
+def _split_2(l: typing.Iterable[int]) -> PairGen:
+    """
+    Small utility to split list by pairs.
+
+    It does not verify the length of initial data.
+    """
     it = iter(l)
     yield from zip(*[it, it])
 
 
 def check_overlap(rect_a: Rectangle, rect_b: Rectangle) -> bool:
-    # TODO: Add docstring
-    # 1) One rectangle is above top edge of other rectangle.
-    # 2) One rectangle is on left side of left edge of other rectangle.
+    """
+    Check if 2 rectangles overlap
+
+    The conditions when rectangles do not overlap are:
+
+    1. One rectangle is on left side of left edge of other rectangle.
+    2. One rectangle is above top edge of other rectangle.
+    """
     if rect_a.top_left.x > rect_b.bottom_right.x:
         return False
 
@@ -52,7 +67,17 @@ def check_overlap(rect_a: Rectangle, rect_b: Rectangle) -> bool:
 
 
 class OverlapTest(unittest.TestCase):
+    """Unit test for overlapping rectangles"""
+
     def _check_both(self, rects: typing.List[Rectangle], is_true: bool = True):
+        """
+        Utility methof to verify that result does not depend
+        on order of rectangles
+
+        I.e. this is always valid::
+
+            check_overlap(rect_a, rect_b) == check_overlap(rect_b, rect_a)
+        """
         checker = self.assertTrue if is_true else self.assertFalse
 
         checker(check_overlap(*rects))
@@ -82,6 +107,14 @@ class OverlapTest(unittest.TestCase):
         ]
         self._check_both(rects)
 
+    def test_overlap_cross(self):
+        # Corner is inside other rectangle, but do overlap
+        rects = [
+            Rectangle(Point(0, 4), Point(10, 2)),
+            Rectangle(Point(2, 6), Point(8, 0))
+        ]
+        self._check_both(rects)
+
     def test_no_overlap_aside(self):
         # Rectangle aside of another
         rects = [
@@ -100,8 +133,14 @@ class OverlapTest(unittest.TestCase):
 
 
 def main():
-    parser = argparse.ArgumentParser()
-    parser.add_argument('coords', nargs=8, type=int)
+    parser = argparse.ArgumentParser(
+        description="Check if rectangles overlap"
+    )
+    parser.add_argument(
+        'coords', nargs=8, type=int,
+        help="4 points (X, Y) for 2 rectangles - "
+             "top-left and bottom-right for each"
+    )
     args = parser.parse_args()
     points = [Point(*c) for c in _split_2(args.coords)]
     rect_a, rect_b = [Rectangle(*p) for p in _split_2(points)]

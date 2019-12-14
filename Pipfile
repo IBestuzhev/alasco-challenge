@@ -4,8 +4,9 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-aiohttp = "*"
-aiohttp-validate = "*"
+aiohttp = "~=3.6"
+aiohttp-validate = "~=1.1"
+aiohttp-swagger = "~=1.0"
 
 [dev-packages]
 "flake8" = "*"

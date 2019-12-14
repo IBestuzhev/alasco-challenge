@@ -11,7 +11,7 @@
     <title>Currency Converter</title>
   </head>
   <body>
-    <nav class="navbar navbar-dark bg-primary">  
+    <nav class="navbar navbar-dark bg-primary mb-3">  
       <div class="container">
         <a class="navbar-brand" href="#">Currency Converter</a>
       </div>
@@ -89,11 +89,44 @@
     <div class="container mt-5">
       <details class="mt-5">
         <summary>Task explanation</summary>
-        <ul>
-          <li>webpack</li>
-          <li>component files</li>
-          <li>why aiohttp</li>
-        </ul>
+        <p>
+          This project is built with <code>aiohttp</code>, <code>vue.js</code> and <code>bootstrap</code>
+        </p>
+        <p>
+          <code>aiohttp</code> provides an API interface to convert currencies.
+          Conversion rates are based on <a href="https://exchangeratesapi.io/">exchangeratesapi.io</a>
+        </p>
+        <p>
+          There are some things that I would implement for longer challenge or real life project.
+        </p>
+        <dl>
+          <dt>List of currencies.</dt>
+          <dd>
+            This list is set both on backend for validation and frontend to display form. I would move it
+            to backend only and provide some kind of <code>api/available_currencies</code> to fetch it.
+          </dd>
+          <dt>JS processing</dt>
+          <dd>
+            Now server serves js files as they are stored in repo. So if browser lack support of some features
+            (like IE and arrow functions) the code will not work.
+
+            For real life project I would like to use <code>typescript</code> to convert file before serving.
+          </dd>
+          <dt><code>vue.js</code> is added as external script</dt>
+          <dd>
+            <p>
+              This is suitable for development only.
+              <br>
+              For production I would use <code>vue cli</code> or <code>webpack</code> to manage JS dependencies
+              and build the JS file to serve to user. 
+            </p>
+            <p>
+              Also it will allow to use things like <em>vue's single component file</em> to split <code>app.js</code>
+              into several modules.
+            </p>
+          </dd>
+        </dl>
+        <p>Though I hope it's not neccessary for such small Vue script and is OK for code challenge.</p>
       </details>
     </div>
 
@@ -105,8 +138,8 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
     -->
 
-    <!-- development version, includes helpful console warnings -->
     <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.15/lodash.min.js" integrity="sha256-VeNaFBVDhoX3H+gJ37DpT/nTuZTdjYro9yBruHjVmoQ=" crossorigin="anonymous"></script>
+    <!-- development version, includes helpful console warnings -->
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script src="static/app.js"></script>
   </body>
